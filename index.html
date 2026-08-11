@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おみくじアプリ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f7f7f7;
+      padding: 40px 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .result {
+      font-size: 3rem;
+      font-weight: bold;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      color: #e63946;
+    }
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>今日のおみくじ</h1>
+    <div id="result" class="result">❓</div>
+    <button onclick="drawOmikuji()">おみくじを引く</button>
+  </div>
+
+  <script>
+    const fortunes = [
+      { name: "大吉", prob: 7 },
+      { name: "吉",   prob: 20 },
+      { name: "中吉", prob: 25 },
+      { name: "小吉", prob: 30 },
+      { name: "凶",   prob: 10 },
+      { name: "大凶", prob: 7 },
+      { name: "💩",   prob: 1 }
+    ];
+
+    function drawOmikuji() {
+      // 0〜99のランダムな数値を生成
+      const rand = Math.floor(Math.random() * 100);
+      let cumulative = 0;
+
+      for (const item of fortunes) {
+        cumulative += item.prob;
+        if (rand < cumulative) {
+          document.getElementById("result").innerText = item.name;
+          break;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
