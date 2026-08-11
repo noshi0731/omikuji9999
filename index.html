@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>おみくじアプリ</title>
+
+  <!-- 全画面表示（独立したアプリ表示）にする設定 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       background-color: #f7f7f7;
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
     .card {
       background: white;
@@ -70,7 +76,6 @@
     ];
 
     function drawOmikuji() {
-      // 0〜99のランダムな数値を生成
       const rand = Math.floor(Math.random() * 100);
       let cumulative = 0;
 
